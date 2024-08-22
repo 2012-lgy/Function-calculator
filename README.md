@@ -1,4 +1,4 @@
-# Function-calculator
+# Function-calculator #v1.3.0
 ## 介绍
   计算函数的计算器
 ## 代码
