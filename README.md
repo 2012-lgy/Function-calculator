@@ -8,3 +8,11 @@
     gcd n m
   ### 最小公倍数
     lcm n m
+  ### +
+    plus n m
+  ### -
+    minus n m
+  ### ×
+    multiply n m
+  ### ÷
+    db n m
