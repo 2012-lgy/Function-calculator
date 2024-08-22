@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include<unistd.h>
 using namespace std;
 bool ispn(unsigned long long n){
 	if(n<2) return 0;
@@ -21,13 +20,13 @@ unsigned long long max(unsigned long long i,unsigned long long n){
 }
 void pf(unsigned long long num){
 	unsigned long long cn,np=2,ny=0,y[1000];
-	if(num<2) cout<<num<<"错误，值<2!"; else{
+	if(num<2) cout<<num<<"错误，值<2！"; else{
 		cn=num;
 		while(iscn(num)){
 			for(unsigned long long p=np;p*p<=num;p++){
 				if(p>3&&p%2==0) p++;
-				np=p;
 				if((num%p==0)&&(ispn(p))){
+					np=p;
 					num/=p;
 					y[ny]=p;
 					ny++;
@@ -60,7 +59,7 @@ unsigned long long lcm(unsigned long long n,unsigned long long x){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.1.0\n";
+	cout<<"函数计算器 v1.3.0\n"<<setprecision(500);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
@@ -78,17 +77,17 @@ int main(){
 			unsigned long long n,m;
 			cin>>n>>m;
 			cout<<lcm(n,m)<<endl;
-		}else if(code=="plus"){
+		}else if(code=="pls"){
 			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n+m<<endl;
-		}else if(code=="minus"){
+		}else if(code=="mns"){
 			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n-m<<endl;
-		}else if(code=="multiply"){
+		}else if(code=="mlt"){
 			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
@@ -98,6 +97,11 @@ int main(){
 			long double n,m;
 			cin>>n>>m;
 			cout<<n/m<<endl;
+		}else if(code=="ispn"){
+			cout<<"调用成功\n";
+			unsigned long long n;
+			cin>>n;
+			if(ispn(n)) cout<<"true\n"; else cout<<"false\n";
 		}else cout<<"无效代码！\n";
 	}
 	return 0;
