@@ -65,19 +65,39 @@ int main(){
 		cin>>code;
 		if(code=="pf"){
 			cout<<"调用成功\n";
-			int n;
+			unsigned long long n;
 			cin>>n;
 			pf(n); 
 		}else if(code=="gcd"){
 			cout<<"调用成功\n";
-			int n,m;
+			unsigned long long n,m;
 			cin>>n>>m;
 			cout<<gcd(n,m)<<endl;
 		}else if(code=="lcm"){
 			cout<<"调用成功\n";
-			int n,m;
+			unsigned long long n,m;
 			cin>>n>>m;
 			cout<<lcm(n,m)<<endl;
+		}else if(code=="plus"){
+			cout<<"调用成功\n";
+			long double n,m;
+			cin>>n>>m;
+			cout<<n+m<<endl;
+		}else if(code=="minus"){
+			cout<<"调用成功\n";
+			long double n,m;
+			cin>>n>>m;
+			cout<<n-m<<endl;
+		}else if(code=="multiply"){
+			cout<<"调用成功\n";
+			long double n,m;
+			cin>>n>>m;
+			cout<<n*m<<endl;
+		}else if(code=="db"){
+			cout<<"调用成功\n";
+			long double n,m;
+			cin>>n>>m;
+			cout<<n/m<<endl;
 		}else cout<<"无效代码！\n";
 	}
 	return 0;
