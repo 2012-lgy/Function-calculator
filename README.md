@@ -9,10 +9,10 @@
   ### 最小公倍数
     lcm n m
   ### +
-    plus n m
+    pls n m
   ### -
-    minus n m
+    mns n m
   ### ×
-    multiply n m
+    mlt n m
   ### ÷
     db n m
