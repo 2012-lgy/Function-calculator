@@ -94,7 +94,8 @@ void cb(){
 	}for(int i=di;i>-1;i--) cout<<zdig[i];
 	if(xnum!=0){
 		cout<<'.';
-		for(int i=0;i<stp;i++){
+		for(int i=0;i<1000;i++){
+			if(i>stp) break;
 			xnum*=b;
 			xdig[i]=int(xnum)+'0';
 			if(xdig[i]>'9') xdig[i]+=7;
@@ -106,7 +107,7 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.5.0\n1991537 Bytes\n"<<setprecision(500);
+	cout<<"函数计算器 v1.5.1\n1991537 Bytes\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
