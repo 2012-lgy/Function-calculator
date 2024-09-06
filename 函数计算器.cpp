@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const long double rtd=57.295779513082320876798154814105;
-unsigned short stp;
+unsigned short stp=10;
 typedef unsigned long long ull;
 bool ispn(ull n){
 	if(n<2) return 0;
@@ -95,197 +95,163 @@ void cb(){
 	if(xnum!=0){
 		cout<<'.';
 		for(int i=0;i<1000;i++){
-			if(i>stp) break;
+			if(i>stp+1) break;
 			xnum*=b;
 			xdig[i]=int(xnum)+'0';
+			if(i==stp+1) if(xdig[stp+1]-'0'>=b/2) xdig[stp]++;
 			if(xdig[i]>'9') xdig[i]+=7;
 			xnum-=int(xnum);
 			di=i;
 			if(xnum==0) break;
-		}for(int i=0;i<=di;i++) cout<<xdig[i];
+		}
+		for(int i=0;i<=di;i++) cout<<xdig[i];
 	}
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.5.1\n1991537 Bytes\n"<<setprecision(10);
+	cout<<"函数计算器 v1.5.2\n1991025 Bytes\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
-			cout<<"调用成功\n";
 			ull n;
 			cin>>n;
 			pf(n); 
 		}else if(code=="gcd"){
-			cout<<"调用成功\n";
 			ull n,m;
 			cin>>n>>m;
 			cout<<gcd(n,m)<<endl;
 		}else if(code=="lcm"){
-			cout<<"调用成功\n";
 			ull n,m;
 			cin>>n>>m;
 			cout<<lcm(n,m)<<endl;
 		}else if(code=="+"){
-			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n<<'+'<<m<<'='<<n+m<<endl;
 		}else if(code=="-"){
-			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n<<'-'<<m<<'='<<n-m<<endl;
 		}else if(code=="*"){
-			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n<<"×"<<m<<'='<<n*m<<endl;
 		}else if(code=="/"){
-			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n<<"÷"<<m<<'='<<n/m<<endl;
 		}else if(code=="^"){
-			cout<<"调用成功\n";
 			long double n,m;
 			cin>>n>>m;
 			cout<<n<<'^'<<m<<'='<<pow(n,m)<<endl;
 		}else if(code=="ispn"){
-			cout<<"调用成功\n";
 			ull n;
 			cin>>n;
 			if(ispn(n)) cout<<"true\n"; else cout<<"false\n";
 		}else if(code=="cb"){
-			cout<<"调用成功\n";
 			cb();
 			cout<<endl;
 		}else if(code=="stp"){
-			cout<<"调用成功\n";
 			cin>>stp;
 			stp=min(500,stp);
-			cout<<setprecision(stp);
+			cout<<setprecision(stp)<<"已将精度设为"<<stp<<endl;
 		}else if(code=="dis"){
-			cout<<"调用成功\n";
 			long double x1,y1,x2,y2;
 			cin>>x1>>y1>>x2>>y2;
 			cout<<pow(pow((x2-x1),2)+pow((y2-y1),2),0.5);
 		}else if(code=="dsin"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"sin "<<d<<"°="<<sin(d/rtd)<<endl;
 		}else if(code=="dcos"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"cos "<<d<<"°="<<cos(d/rtd)<<endl;
 		}else if(code=="dtan"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"tan "<<d<<"°="<<tan(d/rtd)<<endl;
 		}else if(code=="dcot"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"cot "<<d<<"°="<<1.0/tan(d/rtd)<<endl;
 		}else if(code=="dsec"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"sec "<<d<<"°="<<1.0/cos(d/rtd)<<endl;
 		}else if(code=="dcsc"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"csc "<<d<<"°="<<1.0/sin(d/rtd)<<endl;
 		}else if(code=="rsin"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"sin "<<d<<"="<<sin(d)<<endl;
 		}else if(code=="rcos"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"cos "<<d<<"="<<cos(d)<<endl;
 		}else if(code=="rtan"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"tan "<<d<<"="<<tan(d)<<endl;
 		}else if(code=="rcot"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"cot "<<d<<"="<<1.0/tan(d)<<endl;
 		}else if(code=="rsec"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"sec "<<d<<"="<<1.0/cos(d)<<endl;
 		}else if(code=="rcsc"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"csc "<<d<<"="<<1.0/sin(d)<<endl;
 		}else if(code=="dasin"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arcsin "<<d<<"="<<asin(d)*rtd<<"°\n";
 		}else if(code=="dacos"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccos "<<d<<"="<<acos(d)*rtd<<"°\n";
 		}else if(code=="datan"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arctan "<<d<<"°="<<atan(d)*rtd<<"°\n";
 		}else if(code=="dacot"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccot "<<d<<"="<<1.0/atan(d)*rtd<<"°\n";
 		}else if(code=="dasec"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arcsec "<<d<<"="<<1.0/acos(d)*rtd<<"°\n";
 		}else if(code=="dacsc"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccsc "<<d<<"="<<1.0/asin(d)*rtd<<"°\n";
 		}else if(code=="rasin"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arcsin "<<d<<"="<<asin(d)<<endl;
 		}else if(code=="racos"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccos "<<d<<"="<<acos(d)<<endl;
 		}else if(code=="ratan"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arctan "<<d<<"="<<atan(d)<<endl;
 		}else if(code=="racot"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccot "<<d<<"="<<1.0/atan(d)<<endl;
 		}else if(code=="rasec"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arcsec "<<d<<"="<<1.0/acos(d)<<endl;
 		}else if(code=="racsc"){
-			cout<<"调用成功\n";
 			long double d;
 			cin>>d;
 			cout<<"arccsc "<<d<<"="<<1.0/asin(d)<<endl;
