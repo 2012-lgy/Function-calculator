@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-const long double rtd=57.295779513082320876798154814105;
+const long double rtd=57.295779513082320876798154814105170332405;
+const long double e=2.7182818284590452353602874713526624977572;
 unsigned short stp=10;
 typedef unsigned long long ull;
 bool ispn(ull n){
@@ -109,7 +110,7 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.5.2\n1991025 Bytes\n"<<setprecision(10);
+	cout<<"函数计算器 v1.6.0\n1996313 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
@@ -218,7 +219,7 @@ int main(){
 		}else if(code=="datan"){
 			long double d;
 			cin>>d;
-			cout<<"arctan "<<d<<"°="<<atan(d)*rtd<<"°\n";
+			cout<<"arctan "<<d<<"="<<atan(d)*rtd<<"°\n";
 		}else if(code=="dacot"){
 			long double d;
 			cin>>d;
@@ -255,6 +256,16 @@ int main(){
 			long double d;
 			cin>>d;
 			cout<<"arccsc "<<d<<"="<<1.0/asin(d)<<endl;
+		}else if(code=="log"){
+			long double b,n;
+			cin>>b>>n;
+			cout<<"log "<<b<<'('<<n<<")="<<log(n)/log(b)<<endl;
+		}else if(code=="ln"){
+			long double n;
+			cin>>n;
+			cout<<"ln "<<n<<"="<<log(n)/log(e)<<endl;
+		}else if(code=="pi"){
+			cout<<3.14159265358979323846264338327950288<<endl;
 		}else cout<<"无效代码！\n";
 	}return 0;
 }
