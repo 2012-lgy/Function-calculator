@@ -1,9 +1,14 @@
 #include<bits/stdc++.h>
+#include<windows.h>
 using namespace std;
 const long double rtd=57.295779513082320876798154814105170332405;
 const long double e=2.7182818284590452353602874713526624977572;
 unsigned short stp=10;
 typedef unsigned long long ull;
+void SetColor(int ForgC, int BackC) {
+    WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
+}
 bool ispn(ull n){
 	if(n<2) return 0;
 	for(ull i=2;i*i<=n;i++) if(n%i==0) return 0;
@@ -23,8 +28,11 @@ ull max(ull i,ull n){
 	else return i;
 }
 void pf(ull num){
-	ull cn,np=2,ny=0,y[1000];
-	if(num<2) cout<<num<<"错误，值<2！"; else{
+	ull cn,np=2,ny=0,y[1000],errcnt;
+	if(num<2){
+		SetColor(4,0);
+		cout<<"错误，值<2！\n";
+	}else{
 		cn=num;
 		while(iscn(num)){
 			for(ull p=np;p*p<=num;p++){
@@ -110,162 +118,244 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.6.0\n1996313 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.7.0\n1998291 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
 			ull n;
 			cin>>n;
-			pf(n); 
+			SetColor(2,0); 
+			pf(n);
+			SetColor(15,0);
 		}else if(code=="gcd"){
 			ull n,m;
 			cin>>n>>m;
+			SetColor(2,0); 
 			cout<<gcd(n,m)<<endl;
+			SetColor(15,0); 
 		}else if(code=="lcm"){
 			ull n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<lcm(n,m)<<endl;
+			SetColor(15,0);
 		}else if(code=="+"){
 			long double n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<n<<'+'<<m<<'='<<n+m<<endl;
+			SetColor(15,0);
 		}else if(code=="-"){
 			long double n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<n<<'-'<<m<<'='<<n-m<<endl;
+			SetColor(15,0);
 		}else if(code=="*"){
 			long double n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<n<<"×"<<m<<'='<<n*m<<endl;
+			SetColor(15,0);
 		}else if(code=="/"){
 			long double n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<n<<"÷"<<m<<'='<<n/m<<endl;
+			SetColor(15,0);
 		}else if(code=="^"){
 			long double n,m;
 			cin>>n>>m;
+			SetColor(2,0);
 			cout<<n<<'^'<<m<<'='<<pow(n,m)<<endl;
+			SetColor(15,0);
 		}else if(code=="ispn"){
 			ull n;
 			cin>>n;
-			if(ispn(n)) cout<<"true\n"; else cout<<"false\n";
+			SetColor(2,0);
+			if(ispn(n)) cout<<"是。\n"; else cout<<"否。\n";
+			SetColor(15,0);
 		}else if(code=="cb"){
+			SetColor(2,0);
 			cb();
 			cout<<endl;
+			SetColor(15,0);
 		}else if(code=="stp"){
 			cin>>stp;
-			stp=min(500,stp);
+			stp=min(900,stp);
+			SetColor(2,0);
 			cout<<setprecision(stp)<<"已将精度设为"<<stp<<endl;
+			SetColor(15,0);
 		}else if(code=="dis"){
 			long double x1,y1,x2,y2;
 			cin>>x1>>y1>>x2>>y2;
-			cout<<pow(pow((x2-x1),2)+pow((y2-y1),2),0.5);
+			SetColor(2,0);
+			cout<<pow(pow((x2-x1),2)+pow((y2-y1),2),0.5)<<endl;
+			SetColor(15,0);
 		}else if(code=="dsin"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"sin "<<d<<"°="<<sin(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="dcos"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"cos "<<d<<"°="<<cos(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="dtan"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"tan "<<d<<"°="<<tan(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="dcot"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"cot "<<d<<"°="<<1.0/tan(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="dsec"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"sec "<<d<<"°="<<1.0/cos(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="dcsc"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"csc "<<d<<"°="<<1.0/sin(d/rtd)<<endl;
+			SetColor(15,0);
 		}else if(code=="rsin"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"sin "<<d<<"="<<sin(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rcos"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"cos "<<d<<"="<<cos(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rtan"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"tan "<<d<<"="<<tan(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rcot"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"cot "<<d<<"="<<1.0/tan(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rsec"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"sec "<<d<<"="<<1.0/cos(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rcsc"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"csc "<<d<<"="<<1.0/sin(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="dasin"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arcsin "<<d<<"="<<asin(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="dacos"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccos "<<d<<"="<<acos(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="datan"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arctan "<<d<<"="<<atan(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="dacot"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccot "<<d<<"="<<1.0/atan(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="dasec"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arcsec "<<d<<"="<<1.0/acos(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="dacsc"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccsc "<<d<<"="<<1.0/asin(d)*rtd<<"°\n";
+			SetColor(15,0);
 		}else if(code=="rasin"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arcsin "<<d<<"="<<asin(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="racos"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccos "<<d<<"="<<acos(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="ratan"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arctan "<<d<<"="<<atan(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="racot"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccot "<<d<<"="<<1.0/atan(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="rasec"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arcsec "<<d<<"="<<1.0/acos(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="racsc"){
 			long double d;
 			cin>>d;
+			SetColor(2,0);
 			cout<<"arccsc "<<d<<"="<<1.0/asin(d)<<endl;
+			SetColor(15,0);
 		}else if(code=="log"){
 			long double b,n;
 			cin>>b>>n;
+			SetColor(2,0);
 			cout<<"log "<<b<<'('<<n<<")="<<log(n)/log(b)<<endl;
+			SetColor(15,0);
 		}else if(code=="ln"){
 			long double n;
 			cin>>n;
+			SetColor(2,0);
 			cout<<"ln "<<n<<"="<<log(n)/log(e)<<endl;
+			SetColor(15,0);
 		}else if(code=="pi"){
+			SetColor(2,0);
 			cout<<3.14159265358979323846264338327950288<<endl;
-		}else cout<<"无效代码！\n";
+			SetColor(15,0);
+		}else{
+			SetColor(4,0);
+			cout<<"无效代码！\n";
+			SetColor(15,0);
+		}
 	}return 0;
 }
