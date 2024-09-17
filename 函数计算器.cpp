@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 #include<windows.h>
 using namespace std;
-const long double rtd=57.295779513082320876798154814105170332405;
-const long double e=2.7182818284590452353602874713526624977572;
-unsigned short stp=10,lang=1,forgc=15,backc=0;
+const long double rtd=57.295779513082320876798154814105170332405,e=2.7182818284590452353602874713526624977572;
+unsigned short lang=1,forgc=15,backc=0;
 typedef unsigned long long ull;
+ull stp=10;
 void SetColor(int ForgC, int BackC) {
     WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
@@ -135,6 +135,18 @@ long double mod(long double n,long double m){
 	return n;
 }
 void cb(){
+	if(stp>2060863){
+		err();
+		switch(lang){
+		case 1:
+			cout<<"精度>2060863，为防止崩溃，已自动停止此程序。\n";
+			break;
+		case 2:
+			cout<<"Precision>2060863, this program has been automatically stopped to prevent crashes.\n";
+			break;
+		}
+		return;
+	}
 	long double n,num=0;
 	long long lb,b;
 	cin>>n>>lb;
@@ -151,22 +163,24 @@ void cb(){
 	}
 	lb=max(min(lb,10),1);
 	cin>>b;
-	if(b>36||b<2) warn();
-	switch(lang){
-		case 1:
-			if(b>36) cout<<"值>36，已将值转为36。\n";
-			if(b<2) cout<<"值<2，已将值转为2。\n";
-			break;
-		case 2:
-			if(b>36) cout<<"Value>36，The value has been converted to 36.\n";
-			if(b<2) cout<<"Value<2，The value has been converted to 2.\n";
-			break;
+	if(b>36||b<2){
+		warn();
+		switch(lang){
+			case 1:
+				if(b>36) cout<<"值>36，已将值转为36。\n";
+				if(b<2) cout<<"值<2，已将值转为2。\n";
+				break;
+			case 2:
+				if(b>36) cout<<"Value>36，The value has been converted to 36.\n";
+				if(b<2) cout<<"Value<2，The value has been converted to 2.\n";
+				break;
+		}
 	}
 	b=max(min(b,36),2);
 	int zn=n;
 	long double xn=n-zn;
-	char zdig[100]={0},xdig[1000]={0};
-	for(int i=0;i<100;i++){
+	char zdig[10000]={0},xdig[stp+1]={0};
+	for(int i=0;i<10000;i++){
 		num+=(zn%10)*pow(lb,i);
 		zn/=10;
 		if(zn==0) break;
@@ -178,7 +192,7 @@ void cb(){
 	}
 	int di,znum=num;
 	long double xnum=num-znum;
-	for(int i=0;i<100;i++){
+	for(int i=0;i<10000;i++){
 		zdig[i]=znum%b+'0';
 		if(zdig[i]>'9') zdig[i]+=7;
 		znum/=b;
@@ -189,7 +203,7 @@ void cb(){
 	for(int i=di;i>-1;i--) cout<<zdig[i];
 	if(xnum!=0){
 		cout<<'.';
-		for(int i=0;i<1000;i++){
+		for(int i=0;i<stp+1;i++){
 			if(i>stp+1) break;
 			xnum*=b;
 			xdig[i]=int(xnum)+'0';
@@ -204,7 +218,7 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.9.0\n2008719 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.10.1\n2029593 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
@@ -274,7 +288,17 @@ int main(){
 			SetColor(forgc,backc);
 		}else if(code=="stp"){
 			cin>>stp;
-			stp=min(900,stp);
+			if(stp>2060863){
+				warn();
+				switch(lang){
+					case 1:
+						cout<<"值>2060863，可能导致部分程序不可用。\n";
+						break;
+					case 2:
+						cout<<"Value>2060863，may cause some programs to be unavailable.\n";
+						break;
+				}
+			}
 			succ();
 			cout<<setprecision(stp);
 			switch(lang){
@@ -547,9 +571,15 @@ int main(){
 				if(x2==0&&y2>0) off2=90;
 				if(x2==0&&y2<0) off2=-90;
 				succ();
-				if((180-off1-off2)>180) cout<<180+off1+off2<<"°\n";
-				else cout<<180-off1-off2<<"°\n";
+				if(mod(180-off1-off2,360)>180) cout<<mod(180+off1+off2,360)<<"°\n";
+				else cout<<mod(180-off1-off2,360)<<"°\n";
 			}
+			SetColor(forgc,backc);
+		}else if(code=="!"){
+			long double n;
+			cin>>n;
+			succ();
+			cout<<n<<"!="<<tgamma(n+1)<<endl;
 			SetColor(forgc,backc);
 		}else{
 			err();
@@ -563,5 +593,6 @@ int main(){
 			}
 			SetColor(forgc,backc);
 		}
-	}return 0;
+	}
+	return 0;
 }
