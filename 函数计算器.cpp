@@ -204,7 +204,7 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.8.0\n2005647 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.9.0\n2008719 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
@@ -288,10 +288,12 @@ int main(){
 			cout<<stp<<endl;
 			SetColor(forgc,backc);
 		}else if(code=="dis"){
-			long double x1,y1,x2,y2;
-			cin>>x1>>y1>>x2>>y2;
+			long double ox,oy,x,y;
+			cin>>ox>>oy>>x>>y;
 			succ();
-			cout<<pow(pow((x2-x1),2)+pow((y2-y1),2),0.5)<<endl;
+			x-=ox;
+			y-=oy;
+			cout<<pow(pow(x,2)+pow(y,2),0.5)<<endl;
 			SetColor(forgc,backc);
 		}else if(code=="dsin"){
 			long double d;
@@ -489,8 +491,68 @@ int main(){
 			succ();
 			SetColor(forgc,backc);
 			cout<<"测试test1234567890.abcdefghijklmnopqrstuvwxyz\n";
+		}else if(code=="deg"){
+			long double ox,oy,x1,y1,x2,y2,off1,off2,ans=180;
+			bool canout=1;
+			cin>>ox>>oy>>x1>>y1>>x2>>y2;
+			x1-=ox;
+			x2-=ox;
+			y1-=oy;
+			y2-=oy;
+			if(x1==0&&y1==0){
+				err();
+				canout=0;
+				switch(lang){
+					case 1:
+						cout<<"点1与原点重合，无法计算角度。\n";
+						break;
+					case 2:
+						cout<<"Point 1 coincides with the origin and cannot calculate the angle.\n";
+						break;
+				}
+			}
+			if(x2==0&&y2==0){
+				err();
+				canout=0;
+				switch(lang){
+					case 1:
+						cout<<"点2与原点重合，无法计算角度。\n";
+						break;
+					case 2:
+						cout<<"Point 2 coincides with the origin and cannot calculate the angle.\n";
+						break;
+				}
+			}
+			if(canout){
+				long double p1=pow(pow(x1,2)+pow(y1,2),0.5);
+				x1/=p1;
+				y1/=p1;
+				long double p2=pow(pow(x2,2)+pow(y2,2),0.5);
+				x2/=p2;
+				y2/=p2;
+				if(x1<0&&y1>0) off1=asin(y1)*rtd;
+				if(x1>0&&y1>0) off1=acos(0-x1)*rtd;
+				if(x1>0&&y1<0) off1=180-asin(y1)*rtd;
+				if(x1<0&&y1<0) off1=180-acos(x1)*rtd;
+				if(x1<0&&y1==0) off1=0;
+				if(x1>0&&y1==0) off1=180;
+				if(x1==0&&y1>0) off1=90;
+				if(x1==0&&y1<0) off1=-90;
+				if(x2<0&&y2>0) off2=acos(x2)*rtd;
+				if(x2>0&&y2>0) off2=acos(x2)*rtd;
+				if(x2>0&&y2<0) off2=asin(y2)*rtd;
+				if(x2<0&&y2<0) off2=0-180-asin(y2)*rtd;
+				if(x2<0&&y2==0) off2=180;
+				if(x2>0&&y2==0) off2=0;
+				if(x2==0&&y2>0) off2=90;
+				if(x2==0&&y2<0) off2=-90;
+				succ();
+				if((180-off1-off2)>180) cout<<180+off1+off2<<"°\n";
+				else cout<<180-off1-off2<<"°\n";
+			}
+			SetColor(forgc,backc);
 		}else{
-			SetColor(4,0);
+			err();
 			switch(lang){
 				case 1:
 					cout<<"无效代码。\n";
