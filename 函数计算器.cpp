@@ -5,7 +5,7 @@ const long double rtd=57.295779513082320876798154814105170332405,e=2.71828182845
 unsigned short lang=1,forgc=15,backc=0;
 typedef unsigned long long ull;
 ull stp=10;
-void SetColor(int ForgC, int BackC) {
+void SetColor(int ForgC, int BackC){
     WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
 }
@@ -200,25 +200,48 @@ void cb(){
 		if(znum==0) break;
 	}
 	succ();
-	for(int i=di;i>-1;i--) cout<<zdig[i];
+	bool xs=0;
 	if(xnum!=0){
-		cout<<'.';
+		xs=1;
 		for(int i=0;i<stp+1;i++){
-			if(i>stp+1) break;
 			xnum*=b;
 			xdig[i]=int(xnum)+'0';
-			if(i==stp+1) if(xdig[stp+1]-'0'>=b/2) xdig[stp]++;
+			if(i==stp) if(xdig[stp]-'0'>=b/2) xdig[stp-1]++;
 			if(xdig[i]>'9') xdig[i]+=7;
 			xnum-=int(xnum);
 			di=i;
-			if(xnum==0) break;
+			if(xnum==0){
+				di++;
+				break;
+			}
 		}
-		for(int i=0;i<=di;i++) cout<<xdig[i];
+	}
+	if(xs){
+		for(int i=stp-1;i>-1;i--){
+			if(xdig[i]>=b){
+				if(i>0){	
+					xdig[i-1]+=int((xdig[i]-'0')/b);
+					xdig[i]-='0';
+					xdig[i]%=b;
+					xdig[i]+='0';
+				}else{
+					zdig[0]+=int((xdig[i]-'0')/b);
+					xdig[i]-='0';
+					xdig[i]%=b;
+					xdig[i]+='0';
+				}
+			}
+		}
+	}
+	for(int i=di;i>-1;i--) if(zdig[i]!=0) cout<<zdig[i];
+	if(xs){
+		cout<<'.';
+		for(int i=0;i<di;i++) cout<<xdig[i];
 	}
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.10.1\n2029593 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.10.2\n2030105 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
