@@ -43,6 +43,6 @@ deg ox oy x1 y1 x2 y2
 ### 广义阶乘 Generalized factorial
 ! num
 ## ###v1.10.2更新公告 v1.10.2 Update announcement###
-### 修复已知bug Fix known bugs
+### 修复已知bug。 Fix known bugs.
 ## 大小 Size
 1.94 MB/1982.52 KB/20301035 B
