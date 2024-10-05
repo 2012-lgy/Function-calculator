@@ -104,12 +104,12 @@ void pf(ull num){
 				cout<<cn<<"是质数。\n"; 
 				break;
 			case 2:
-				cout<<" is prime number\n";
+				cout<<" is prime number.\n";
 				break;
 			}
 		}else{
 			if(num!=1) y[ny]=num;
-			cout<<cn<<" = ";
+			cout<<cn<<'=';
 			for(int i=0;i<ny;i++) cout<<y[i]<<"×";
 			cout<<y[ny];
 		}
@@ -241,7 +241,7 @@ void cb(){
 }
 int main(){
 	string code;
-	cout<<"函数计算器 v1.10.2\n2030105 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.10.3\n2030105 B\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
