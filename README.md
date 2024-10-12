@@ -1,4 +1,4 @@
-# 函数计算器 v1.10.3 Function calculator v1.10.3
+# 函数计算器 v1.11.0 Function calculator v1.11.0
 ## 介绍 Introduction
 计算函数的计算器。 A calculator for calculating functions.
 ## 代码 Codes
@@ -45,4 +45,4 @@ deg ox oy x1 y1 x2 y2
 ## ###v1.10.3更新公告 v1.10.3 Update announcement###
 ### 修复已知bug。 Fix known bugs.
 ## 大小 Size
-1.94 MB/1982.52 KB/2030105 B
+1.94 MB/1984.46 KB/2032085 B

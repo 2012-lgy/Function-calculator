@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 #include<windows.h>
 using namespace std;
-const long double rtd=57.295779513082320876798154814105170332405,e=2.7182818284590452353602874713526624977572;
-unsigned short lang=1,forgc=15,backc=0;
+const long double rtd=90/asin(1),e=2.7182818284590452353602874713526624977572,gtd=100/asin(1);
+unsigned short lang=1,forgc=15,backc=0,syst=1;
 typedef unsigned long long ull;
 ull stp=10;
 void SetColor(int ForgC, int BackC){
@@ -239,9 +239,15 @@ void cb(){
 		for(int i=0;i<di;i++) cout<<xdig[i];
 	}
 }
+long double cot(long double num){return cos(num)/sin(num);}
+long double sec(long double num){return 1.0/cos(num);}
+long double csc(long double num){return 1.0/sin(num);}
+long double acot(long double num){return acos(num)/asin(num);}
+long double asec(long double num){return 1.0/acos(num);}
+long double acsc(long double num){return 1.0/asin(num);}
 int main(){
 	string code;
-	cout<<"函数计算器 v1.10.3\n2030105 B\n"<<setprecision(10);
+	cout<<"函数计算器 v1.11.0\n2034416\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
@@ -342,149 +348,197 @@ int main(){
 			y-=oy;
 			cout<<pow(pow(x,2)+pow(y,2),0.5)<<endl;
 			SetColor(forgc,backc);
-		}else if(code=="dsin"){
+		}else if(code=="sin"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"sin "<<d<<"°="<<sin(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"sin "<<d<<"°="<<sin(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"sin "<<d<<"="<<sin(d)<<endl;
+					break;
+				case 3:
+					cout<<"sin "<<d<<"G="<<sin(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="dcos"){
+		}else if(code=="cos"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"cos "<<d<<"°="<<cos(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"cos "<<d<<"°="<<cos(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"cos "<<d<<"="<<cos(d)<<endl;
+					break;
+				case 3:
+					cout<<"cos "<<d<<"G="<<cos(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="dtan"){
+		}else if(code=="tan"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"tan "<<d<<"°="<<tan(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"tan "<<d<<"°="<<tan(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"tan "<<d<<"="<<tan(d)<<endl;
+					break;
+				case 3:
+					cout<<"tan "<<d<<"G="<<tan(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="dcot"){
+		}else if(code=="cot"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"cot "<<d<<"°="<<1.0/tan(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"cot "<<d<<"°="<<cot(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"cot "<<d<<"="<<cot(d)<<endl;
+					break;
+				case 3:
+					cout<<"cot "<<d<<"G="<<cot(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="dsec"){
+		}else if(code=="sec"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"sec "<<d<<"°="<<1.0/cos(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"sec "<<d<<"°="<<sec(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"sec "<<d<<"="<<sec(d)<<endl;
+					break;
+				case 3:
+					cout<<"sec "<<d<<"G="<<sec(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="dcsc"){
+		}else if(code=="csc"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"csc "<<d<<"°="<<1.0/sin(d/rtd)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"csc "<<d<<"°="<<csc(d/rtd)<<endl;
+					break;
+				case 2:
+					cout<<"csc "<<d<<"="<<csc(d)<<endl;
+					break;
+				case 3:
+					cout<<"csc "<<d<<"G="<<csc(d/gtd)<<endl;
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rsin"){
+		}else if(code=="asin"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"sin "<<d<<"="<<sin(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arcsin "<<d<<"="<<asin(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arcsin "<<d<<"="<<asin(d)<<endl;
+					break;
+				case 3:
+					cout<<"arcsin "<<d<<"="<<asin(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rcos"){
+		}else if(code=="acos"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"cos "<<d<<"="<<cos(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arccos "<<d<<"="<<acos(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arccos "<<d<<"="<<acos(d)<<endl;
+					break;
+				case 3:
+					cout<<"arccos "<<d<<"="<<acos(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rtan"){
+		}else if(code=="atan"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"tan "<<d<<"="<<tan(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arctan "<<d<<"="<<atan(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arctan "<<d<<"="<<atan(d)<<endl;
+					break;
+				case 3:
+					cout<<"arctan "<<d<<"="<<atan(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rcot"){
+		}else if(code=="acot"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"cot "<<d<<"="<<1.0/tan(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arccot "<<d<<"="<<acot(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arccot "<<d<<"="<<acot(d)<<endl;
+					break;
+				case 3:
+					cout<<"arccot "<<d<<"="<<acot(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rsec"){
+		}else if(code=="asec"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"sec "<<d<<"="<<1.0/cos(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arcsec "<<d<<"="<<asec(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arcsec "<<d<<"="<<asec(d)<<endl;
+					break;
+				case 3:
+					cout<<"arcsec "<<d<<"="<<asec(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
-		}else if(code=="rcsc"){
+		}else if(code=="acsc"){
 			long double d;
 			cin>>d;
 			succ();
-			cout<<"csc "<<d<<"="<<1.0/sin(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="dasin"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arcsin "<<d<<"="<<asin(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="dacos"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccos "<<d<<"="<<acos(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="datan"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arctan "<<d<<"="<<atan(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="dacot"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccot "<<d<<"="<<1.0/atan(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="dasec"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arcsec "<<d<<"="<<1.0/acos(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="dacsc"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccsc "<<d<<"="<<1.0/asin(d)*rtd<<"°\n";
-			SetColor(forgc,backc);
-		}else if(code=="rasin"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arcsin "<<d<<"="<<asin(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="racos"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccos "<<d<<"="<<acos(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="ratan"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arctan "<<d<<"="<<atan(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="racot"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccot "<<d<<"="<<1.0/atan(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="rasec"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arcsec "<<d<<"="<<1.0/acos(d)<<endl;
-			SetColor(forgc,backc);
-		}else if(code=="racsc"){
-			long double d;
-			cin>>d;
-			succ();
-			cout<<"arccsc "<<d<<"="<<1.0/asin(d)<<endl;
+			switch(syst){
+				case 1:
+					cout<<"arccsc "<<d<<"="<<acsc(d)*rtd<<"°\n";
+					break;
+				case 2:
+					cout<<"arccsc "<<d<<"="<<acsc(d)<<endl;
+					break;
+				case 3:
+					cout<<"arccsc "<<d<<"="<<acsc(d)*gtd<<"G\n";
+					break;
+			}
 			SetColor(forgc,backc);
 		}else if(code=="log"){
 			long double b,n;
@@ -506,7 +560,7 @@ int main(){
 			SetColor(forgc,backc);
 		}else if(code=="pi"){
 			succ();
-			cout<<3.14159265358979323846264338327950288<<endl;
+			cout<<asin(1)*2<<endl;
 			SetColor(forgc,backc);
 		}else if(code=="cl"){
 			cout<<"1. 简体中文\n2. English\n";
@@ -520,7 +574,7 @@ int main(){
 					cout<<"Switching successful.\n";
 					break;
 			}
-				SetColor(forgc,backc);
+			SetColor(forgc,backc);
 		}else if(code=="cc"){
 			int lforgc=forgc,lbackc=backc;
 			cin>>forgc>>backc;
@@ -603,6 +657,47 @@ int main(){
 			cin>>n;
 			succ();
 			cout<<n<<"!="<<tgamma(n+1)<<endl;
+			SetColor(forgc,backc);
+		}else if(code=="sn"){
+			long double num;
+			cin>>num;
+			succ();
+			if(num==0) cout<<"0=0E0"; else{
+				cout<<num<<"=";
+				bool fu;
+				if(num<0){
+					fu=1;
+					num=fabs(num);
+				}
+				int dig=int(log(num)/log(10));
+				long double rnum=num/pow(10,dig);
+				if(rnum<1){
+					rnum*=10;
+					dig--;
+				}
+				if(fu) cout<<"-";
+				cout<<rnum<<"E"<<dig<<endl;
+			}
+			SetColor(forgc,backc);
+		}else if(code=="cs"){
+			switch(lang){
+				case 1:
+					cout<<"1.角度制\n2.弧度制\n3.百分度制\n";
+					break;
+				case 2:
+					cout<<"1.DEG\n2.RAD\n3.GRAD\n";
+					break;
+			}
+			cin>>syst;
+			succ();
+			switch(lang){
+				case 1:
+					cout<<"切换成功。\n";
+					break;
+				case 2:
+					cout<<"Switching successful.\n";
+					break;
+			}
 			SetColor(forgc,backc);
 		}else{
 			err();
