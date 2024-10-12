@@ -42,7 +42,10 @@ cc forgec backc
 deg ox oy x1 y1 x2 y2
 ### 广义阶乘 Generalized factorial
 ! num
-## ###v1.10.3更新公告 v1.10.3 Update announcement###
+### 科学计数法 Scientific notation
+sn num
+## ###v1.11.0更新公告 v1.11.0 Update announcement###
 ### 修复已知bug。 Fix known bugs.
+### 增加科学计数法功能。 Add Scientific notation function.
 ## 大小 Size
-1.94 MB/1984.46 KB/2032085 B
+1.94 MB/1986.73 KB/2034416 B
