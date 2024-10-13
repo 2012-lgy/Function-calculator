@@ -1,14 +1,14 @@
-# 函数计算器 v1.12.0 Function calculator v1.12.0
-## 介绍 Introduction
-计算函数的计算器。 A calculator for calculating functions.
+# 函数计算器 v1.12.0
+## 介绍
+计算函数的计算器。
 ## 代码 Codes
-### 分解质因数 Prime factorization
+### 分解质因数
 pf n
-### 最大公因数 Greatest common divisor
+### 最大公因数
 gcd n n
-### 最小公倍数 Least common multiple
+### 最小公倍数
 lcm n n
-### 判断质数 Judging prime numbers
+### 判断质数
 ispn num
 ### +
 + n n
@@ -20,35 +20,35 @@ ispn num
 / n m (n/m)
 ### ^
 ^ n m (n^m)
-### 转换进制 Convert base
+### 转换进制
 cb num last_base base
-### 转换语言 Convert languege
+### 转换语言
 cl languege[1.简体中文]
-### 转换输入颜色 Convert input color
+### 转换输入颜色
 cc forgec backc
-### 切换模式 Change System
-cs system[1.角度制 DEG]
-### 设置精度 Set precision
+### 切换模式
+cs system[1.角度制]
+### 设置精度
 stp num
-### 求两点间距离 Find the distance between 2 points
+### 求两点间距离
 dis p1x p1y p2x p2y
-### 三角函数 Trigonometric function
-(反 Arc：a)sin/cos/tan/cot/sec/csc n
-### 三角函数——例 Trigonometric function - Example
-cos：余弦 cos
-asin：反正弦 arcsin
-### 对数 Logarithm
+### 三角函数
+(反：a)sin/cos/tan/cot/sec/csc n
+### 三角函数——例
+cos：余弦
+asin：反正弦
+### 对数
 log base n
-### 自然对数 Natural logarithm
+### 自然对数
 ln n
-### 三点求度数 Find the degree based on 3 points
+### 三点求度数
 deg ox oy x1 y1 x2 y2
-### 广义阶乘 Generalized factorial
+### 广义阶乘
 ! num
-### 科学计数法 Scientific notation
+### 科学计数法
 sn num
-## ###v1.12.0更新公告 v1.12.0 Update announcement###
-### 修复已知bug。 Fix known bugs.
-### 增加运行时间功能等。 Add runtime functionality etc.
-## 大小 Size
+## ###v1.12.0更新公告###
+### 修复已知bug。
+### 增加运行时间功能等。
+## 大小
 1.95 MB/1995.33 KB/2043218 B
