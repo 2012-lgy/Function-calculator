@@ -4,7 +4,7 @@ using namespace std;
 const long double rtd=90/asin(1),e=2.7182818284590452353602874713526624977572,gtd=100/asin(1);
 unsigned short lang=1,forgc=15,backc=0,syst=1;
 typedef unsigned long long ull;
-ull stp=10;
+ull stp=10,mstp=10022;
 void SetColor(int ForgC, int BackC){
     WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
@@ -51,6 +51,14 @@ void succ(){
 		case 2:
 			cout<<"[Successful completion]";
 			break;
+	}
+}
+string msec(){
+	switch(lang){
+		case 1:
+			return "毫秒\n";
+		case 2:
+			return "ms\n";
 	}
 }
 bool ispn(ull n){
@@ -135,14 +143,14 @@ long double mod(long double n,long double m){
 	return n;
 }
 void cb(){
-	if(stp>2060863){
+	if(stp>mstp){
 		err();
 		switch(lang){
 		case 1:
-			cout<<"精度>2060863，为防止崩溃，已自动停止此程序。\n";
+			cout<<"精度>"<<mstp<<"，为防止崩溃，已自动停止此程序。\n";
 			break;
 		case 2:
-			cout<<"Precision>2060863, this program has been automatically stopped to prevent crashes.\n";
+			cout<<"Precision>"<<mstp<<", this program has been automatically stopped to prevent crashes.\n";
 			break;
 		}
 		return;
@@ -200,6 +208,7 @@ void cb(){
 		if(znum==0) break;
 	}
 	succ();
+	ull st=GetTickCount();
 	bool xs=0;
 	if(xnum!=0){
 		xs=1;
@@ -238,6 +247,8 @@ void cb(){
 		cout<<'.';
 		for(int i=0;i<di;i++) cout<<xdig[i];
 	}
+	ull ed=GetTickCount();
+	cout<<"\n>"<<ed-st<<msec();
 }
 long double cot(long double num){return cos(num)/sin(num);}
 long double sec(long double num){return 1.0/cos(num);}
@@ -247,55 +258,80 @@ long double asec(long double num){return 1.0/acos(num);}
 long double acsc(long double num){return 1.0/asin(num);}
 int main(){
 	string code;
-	cout<<"函数计算器 v1.11.0\n2034416\n"<<setprecision(10);
+	
+	cout<<"函数计算器 v1.12.0\n2043218 Bytes\n"<<setprecision(10);
 	while(1){
 		cin>>code;
 		if(code=="pf"){
 			ull n;
 			cin>>n;
+			ull st=GetTickCount();
 			pf(n);
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="gcd"){
 			ull n,m;
 			cin>>n>>m;
 			succ(); 
+			ull st=GetTickCount();
 			cout<<gcd(n,m)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc); 
 		}else if(code=="lcm"){
 			ull n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<lcm(n,m)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="+"){
 			long double n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<'+'<<m<<'='<<n+m<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="-"){
 			long double n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<'-'<<m<<'='<<n-m<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="*"){
 			long double n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<"×"<<m<<'='<<n*m<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="/"){
 			long double n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<"÷"<<m<<'='<<n/m<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="^"){
 			long double n,m;
 			cin>>n>>m;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<'^'<<m<<'='<<pow(n,m)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="ispn"){
 			ull n;
@@ -309,26 +345,25 @@ int main(){
 					if(ispn(n)) cout<<"True.\n"; else cout<<"False.\n";
 					break;
 			}
-			
 			SetColor(forgc,backc);
 		}else if(code=="cb"){
 			cb();
-			cout<<endl;
 			SetColor(forgc,backc);
 		}else if(code=="stp"){
 			cin>>stp;
-			if(stp>2060863){
+			if(stp>mstp){
 				warn();
 				switch(lang){
 					case 1:
-						cout<<"值>2060863，可能导致部分程序不可用。\n";
+						cout<<"值>"<<mstp<<"，可能导致部分程序不可用。\n";
 						break;
 					case 2:
-						cout<<"Value>2060863，may cause some programs to be unavailable.\n";
+						cout<<"Value>"<<mstp<<"，may cause some programs to be unavailable.\n";
 						break;
 				}
 			}
 			succ();
+			ull st=GetTickCount();
 			cout<<setprecision(stp);
 			switch(lang){
 				case 1:
@@ -339,19 +374,25 @@ int main(){
 					break;
 			}
 			cout<<stp<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="dis"){
 			long double ox,oy,x,y;
 			cin>>ox>>oy>>x>>y;
 			succ();
+			ull st=GetTickCount();
 			x-=ox;
 			y-=oy;
 			cout<<pow(pow(x,2)+pow(y,2),0.5)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="sin"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"sin "<<d<<"°="<<sin(d/rtd)<<endl;
@@ -363,11 +404,14 @@ int main(){
 					cout<<"sin "<<d<<"G="<<sin(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="cos"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"cos "<<d<<"°="<<cos(d/rtd)<<endl;
@@ -379,11 +423,14 @@ int main(){
 					cout<<"cos "<<d<<"G="<<cos(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="tan"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"tan "<<d<<"°="<<tan(d/rtd)<<endl;
@@ -395,11 +442,14 @@ int main(){
 					cout<<"tan "<<d<<"G="<<tan(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="cot"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"cot "<<d<<"°="<<cot(d/rtd)<<endl;
@@ -411,11 +461,14 @@ int main(){
 					cout<<"cot "<<d<<"G="<<cot(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="sec"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"sec "<<d<<"°="<<sec(d/rtd)<<endl;
@@ -427,11 +480,14 @@ int main(){
 					cout<<"sec "<<d<<"G="<<sec(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="csc"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"csc "<<d<<"°="<<csc(d/rtd)<<endl;
@@ -443,11 +499,14 @@ int main(){
 					cout<<"csc "<<d<<"G="<<csc(d/gtd)<<endl;
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="asin"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arcsin "<<d<<"="<<asin(d)*rtd<<"°\n";
@@ -459,11 +518,14 @@ int main(){
 					cout<<"arcsin "<<d<<"="<<asin(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="acos"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arccos "<<d<<"="<<acos(d)*rtd<<"°\n";
@@ -475,11 +537,14 @@ int main(){
 					cout<<"arccos "<<d<<"="<<acos(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="atan"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arctan "<<d<<"="<<atan(d)*rtd<<"°\n";
@@ -491,11 +556,14 @@ int main(){
 					cout<<"arctan "<<d<<"="<<atan(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="acot"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arccot "<<d<<"="<<acot(d)*rtd<<"°\n";
@@ -507,11 +575,14 @@ int main(){
 					cout<<"arccot "<<d<<"="<<acot(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="asec"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arcsec "<<d<<"="<<asec(d)*rtd<<"°\n";
@@ -523,11 +594,14 @@ int main(){
 					cout<<"arcsec "<<d<<"="<<asec(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="acsc"){
 			long double d;
 			cin>>d;
 			succ();
+			ull st=GetTickCount();
 			switch(syst){
 				case 1:
 					cout<<"arccsc "<<d<<"="<<acsc(d)*rtd<<"°\n";
@@ -539,33 +613,48 @@ int main(){
 					cout<<"arccsc "<<d<<"="<<acsc(d)*gtd<<"G\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="log"){
 			long double b,n;
 			cin>>b>>n;
 			succ();
+			ull st=GetTickCount();
 			cout<<"log "<<b<<'('<<n<<")="<<log(n)/log(b)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="lg"){
 			long double n;
 			cin>>n;
 			succ();
+			ull st=GetTickCount();
 			cout<<"lg "<<n<<"="<<log(n)/log(10)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="ln"){
 			long double n;
 			cin>>n;
 			succ();
+			ull st=GetTickCount();
 			cout<<"ln "<<n<<"="<<log(n)/log(e)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="pi"){
 			succ();
+			ull st=GetTickCount();
 			cout<<asin(1)*2<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="cl"){
 			cout<<"1. 简体中文\n2. English\n";
 			cin>>lang;
 			succ();
+			ull st=GetTickCount();
 			switch(lang){
 				case 1:
 					cout<<"切换成功。\n";
@@ -574,6 +663,8 @@ int main(){
 					cout<<"Switching successful.\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="cc"){
 			int lforgc=forgc,lbackc=backc;
@@ -590,6 +681,9 @@ int main(){
 				}
 			}
 			succ();
+			ull st=GetTickCount();
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 			cout<<"测试test1234567890.abcdefghijklmnopqrstuvwxyz\n";
 		}else if(code=="deg"){
@@ -639,8 +733,7 @@ int main(){
 				if(x1>0&&y1==0) off1=180;
 				if(x1==0&&y1>0) off1=90;
 				if(x1==0&&y1<0) off1=-90;
-				if(x2<0&&y2>0) off2=acos(x2)*rtd;
-				if(x2>0&&y2>0) off2=acos(x2)*rtd;
+				if(x2!=0&&y2>0) off2=acos(x2)*rtd;
 				if(x2>0&&y2<0) off2=asin(y2)*rtd;
 				if(x2<0&&y2<0) off2=0-180-asin(y2)*rtd;
 				if(x2<0&&y2==0) off2=180;
@@ -648,20 +741,28 @@ int main(){
 				if(x2==0&&y2>0) off2=90;
 				if(x2==0&&y2<0) off2=-90;
 				succ();
+				ull st=GetTickCount();
 				if(mod(180-off1-off2,360)>180) cout<<mod(180+off1+off2,360)<<"°\n";
 				else cout<<mod(180-off1-off2,360)<<"°\n";
+				ull ed=GetTickCount();
+				cout<<">"<<ed-st<<msec();
 			}
+			
 			SetColor(forgc,backc);
 		}else if(code=="!"){
 			long double n;
 			cin>>n;
 			succ();
+			ull st=GetTickCount();
 			cout<<n<<"!="<<tgamma(n+1)<<endl;
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="sn"){
 			long double num;
 			cin>>num;
 			succ();
+			ull st=GetTickCount();
 			if(num==0) cout<<"0=0E0"; else{
 				cout<<num<<"=";
 				bool fu;
@@ -678,6 +779,8 @@ int main(){
 				if(fu) cout<<"-";
 				cout<<rnum<<"E"<<dig<<endl;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else if(code=="cs"){
 			switch(lang){
@@ -690,6 +793,7 @@ int main(){
 			}
 			cin>>syst;
 			succ();
+			ull st=GetTickCount();
 			switch(lang){
 				case 1:
 					cout<<"切换成功。\n";
@@ -698,6 +802,8 @@ int main(){
 					cout<<"Switching successful.\n";
 					break;
 			}
+			ull ed=GetTickCount();
+			cout<<">"<<ed-st<<msec();
 			SetColor(forgc,backc);
 		}else{
 			err();
